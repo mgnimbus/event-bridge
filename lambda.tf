@@ -37,8 +37,17 @@ resource "aws_lambda_function" "lambda_processor" {
   function_name    = "event-processor"
   filename         = data.archive_file.zip.output_path
   source_code_hash = data.archive_file.zip.output_base64sha256
+  layers           = [aws_lambda_layer_version.lambda_layer.arn]
   role             = aws_iam_role.lambda_iam.arn
   handler          = "event.lambda_handler"
-  runtime          = "python3.8"
+  runtime          = "python3.11"
   timeout          = 60
+}
+
+
+resource "aws_lambda_layer_version" "lambda_layer" {
+  filename   = "./layers/requests.zip"
+  layer_name = "requests_layer_name"
+
+  compatible_runtimes = ["python3.11"]
 }
