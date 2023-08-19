@@ -11,16 +11,15 @@ def lambda_handler(event, context):
 
     # Extract source from the event
     event_source = event['source']
-    event_detail_type = event['detail-type']
+    event_detail_type = event['deatil-type']
     event_state = event['detail']['state']
     instance_id = event['detail']['instance-id']
 
     # Request payload with updated source
     payload = {
         "description": event_detail_type,
-        "type": "event",
-        "severity": 3,
-        "source": event_source,
+        "severity": 4,
+        "source": event_source,  # Updated with the event source
         "check": event_state,
         "service": ["EC2"],
         "tags": {

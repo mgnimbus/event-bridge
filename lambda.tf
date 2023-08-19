@@ -51,3 +51,10 @@ resource "aws_lambda_layer_version" "lambda_layer" {
 
   compatible_runtimes = ["python3.11"]
 }
+
+resource "aws_lambda_permission" "event_bridge" {
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.lambda_processor.arn
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.ec2_event_process.arn
+}

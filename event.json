@@ -1,0 +1,16 @@
+{
+    "version": "0",
+    "id": "d474c740-4c7c-baa0-7c37-3cd1f1c5ea1e",
+    "detail-type": "EC2 Instance State-change Notification",
+    "source": "aws.ec2",
+    "account": "328268088738",
+    "time": "2023-08-19T16:25:01Z",
+    "region": "us-east-1",
+    "resources": [
+        "arn:aws:ec2:us-east-1:328268088738:instance/i-027f6b924a98e2b5a"
+    ],
+    "detail": {
+        "instance-id": "i-027f6b924a98e2b5a",
+        "state": "pending"
+    }
+}

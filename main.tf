@@ -34,7 +34,6 @@ resource "aws_cloudwatch_event_rule" "ec2_event_process" {
 resource "aws_cloudwatch_event_target" "example" {
   arn  = aws_lambda_function.lambda_processor.arn
   rule = aws_cloudwatch_event_rule.ec2_event_process.id
-
 }
 
 
