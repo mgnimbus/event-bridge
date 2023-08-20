@@ -1,9 +1,13 @@
+resource "random_pet" "randy" {
+  length = 1
+}
+
 resource "aws_instance" "example" {
   ami           = "ami-0453898e98046c639"
   instance_type = "t2.micro"
 
   tags = {
-    Name = "Event-bridge-lambda"
+    Name = "Event-bridge-lambda-${random_pet.randy.id}"
   }
 }
 
@@ -11,7 +15,7 @@ resource "aws_instance" "example" {
 
 
 resource "aws_cloudwatch_event_rule" "ec2_event_process" {
-  name        = "tf-ec2-event-process"
+  name        = "tf-ec2-event-process-${random_pet.randy.id}"
   description = "To send ec2 status event to lambda"
   event_pattern = jsonencode(
     {

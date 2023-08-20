@@ -1,13 +1,14 @@
-import json
 import requests
+import os
+import json
 
 
 def lambda_handler(event, context):
     # Moogsoft API endpoint
-    moogsoft_api_url = "https://api.moogsoft.ai/v1/integrations/events"
+    moogsoft_api_url = os.environ.get('moogsoft_url')
 
     # API Key for authentication
-    api_key = "6f745214-46a2-485b-a171-80aa324995ec"
+    api_key = os.environ.get('moogsoft_api_key')
 
     # Extract source from the event
     event_source = event['source']
@@ -19,7 +20,7 @@ def lambda_handler(event, context):
     payload = {
         "description": event_detail_type,
         "type": "event",
-        "severity": 3,
+        "severity": 2,
         "source": event_source,
         "check": event_state,
         "service": ["EC2"],
